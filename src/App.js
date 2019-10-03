@@ -1,10 +1,11 @@
+/* eslint-disable */
 import React from 'react';
 import * as axios from 'axios';
 import {Grid, Segment, Header} from 'semantic-ui-react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-
+/* eslint-enable */
 class App extends React.Component {
 
   constructor (props) {
@@ -23,14 +24,14 @@ class App extends React.Component {
 
   getListings() {
     axios.get('https://cors-anywhere.herokuapp.com/https://mlb19.theshownation.com/apis/listings.json')
-    .then((response) => {
-      this.setState({
-        rowData: response.data
+      .then((response) => {
+        this.setState({
+          rowData: response.data
+        })
       })
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   componentDidMount () {
@@ -39,29 +40,29 @@ class App extends React.Component {
 
   render() {
     return (
-        <Grid columns={3}>
-          <Grid.Row>
-            <Grid.Column width={3}></Grid.Column>
-            <Grid.Column width={10}>
-              <br />
-              <Header>MLB The Show 19 Community Market Listings</Header>
-              <Segment>
-                <div 
-                  className="ag-theme-balham"
-                  style={{ 
+      <Grid columns={3}>
+        <Grid.Row>
+          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={10}>
+            <br />
+            <Header>MLB The Show 19 Community Market Listings</Header>
+            <Segment>
+              <div 
+                className="ag-theme-balham"
+                style={{ 
                   height: '500px', 
                   width: '920px' }} 
-                >
-                  <AgGridReact
-                    columnDefs={this.state.columnDefs}
-                    rowData={this.state.rowData.listings}>
-                  </AgGridReact>
-                </div>
-              </Segment>
-            </Grid.Column>
-            <Grid.Column width={3}></Grid.Column>
-          </Grid.Row>
-        </Grid>
+              >
+                <AgGridReact
+                  columnDefs={this.state.columnDefs}
+                  rowData={this.state.rowData.listings}>
+                </AgGridReact>
+              </div>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={3}></Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
